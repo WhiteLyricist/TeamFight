@@ -15,6 +15,8 @@ public class UIController : MonoBehaviour
     [SerializeField] 
     private TMP_Text _text;
 
+    private float _timer = 0;
+
     void Start()
     {
         Move.gameOver += OnGameOver;
@@ -22,6 +24,8 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
+        _timer = _timer + Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             Application.Quit();
@@ -38,7 +42,7 @@ public class UIController : MonoBehaviour
         Destroy(_team2);
 
         _text.gameObject.SetActive(true);
-        _text.text = text + " выиграла!";
+        _text.text = text + " выиграла! Время игры - " + _timer;
     }
 
     private void OnDestroy()
